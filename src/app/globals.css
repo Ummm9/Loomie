@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0a0a0a;
+  --paper: #f2f0ea;
+  --paper-dim: #e7e4db;
+  --muted: #8c8b86;
+  --muted-on-paper: #6b6a65;
+  --line: rgba(242, 240, 234, 0.14);
+  --line-strong: rgba(242, 240, 234, 0.28);
+  --line-paper: rgba(10, 10, 10, 0.12);
+  --line-paper-strong: rgba(10, 10, 10, 0.24);
+
+  --vanta-lime: #c6ff00;
+  --vanta-purple: #a259ff;
+  --vanta-orange: #ff6a00;
+  --mellow-yellow: #f4c430;
+  --mellow-sage: #9caf88;
+  --mellow-purple: #8b7ab8;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-muted: var(--muted);
+  --color-muted-on-paper: var(--muted-on-paper);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-line-paper: var(--line-paper);
+
+  --color-vanta-lime: var(--vanta-lime);
+  --color-vanta-purple: var(--vanta-purple);
+  --color-vanta-orange: var(--vanta-orange);
+  --color-mellow-yellow: var(--mellow-yellow);
+  --color-mellow-sage: var(--mellow-sage);
+  --color-mellow-purple: var(--mellow-purple);
+
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ink);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Custom cursor - desktop only */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-none-desktop {
+    cursor: none;
+  }
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 4px;
+}
+
+.theme-paper a:focus-visible,
+.theme-paper button:focus-visible {
+  outline-color: var(--ink);
+}
+
+/* Hide scrollbar aesthetics but keep function */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 0;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Reveal utility (fallback for no-js / reduced motion handled via Framer) */
+.no-js .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
